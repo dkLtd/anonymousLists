@@ -17,8 +17,6 @@ To add a history tab to a page with a div with id "history" use the following li
 
     $("#history").anonymousLists();
 
-![anonymousLists default](media/example_use/anonLists_default.png)
-
 So, if you have a template or master page with an empty div, which is present across your entire site, with that single line, your users can have a history of their visits and searches within your site. But what if you want to display the history only in a single page or you want to keep history of a page without displaying a history tab? Then you need to use the tabsHolder method. With that method, if the specified div is found, then that div will be used for displaying the history. If not, the history will be still tracked, but won’t be displayed in the particular page.
 
     var hist = tabsHolder("#history").anonymousLists();
@@ -53,11 +51,9 @@ Now that we got the basic history tab off the way, let’s see an example with m
      
      hist.anonymousLists("addItemToList", "Favorites", movie);
 
-The above js creates the history and favorites tabs (shown below) and adds to the favorites tab the 3 selected movies. For adding them we used 2 plugin methods, the addToList and the addItemToList. Both work the same and the choice is just a matter of style.
+The above js creates a history and a favorites tab and adds to the favorites the 3 selected movies. For adding them we used 2 plugin methods, the addToList and the addItemToList. Both work the same and the choice is just a matter of style.
 
-![anonymousLists favorites img](media/example_use/anonLists_favorites.png)
-
-There various settings for changing the functionality and look of our tabs and we can even change the HTML of our lists' items. You can find more examples and information on http://codebits.weebly.com/plugins/category/anonymouslists-plugin and you can see a live implementation on http://codebits.weebly.com/movies.html.
+There various settings for changing the functionality and look of our tabs and we can even change the HTML of our lists' items. You can find more information and examples on http://codebits.weebly.com/plugins/category/anonymouslists-plugin. Additionally, you can see a live implementation on http://codebits.weebly.com/movies.html.
 
 # Future development and issues
 

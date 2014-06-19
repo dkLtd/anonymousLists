@@ -1,0 +1,120 @@
+.myLists .tabs
+{
+	padding: 6px 0px 0px 2% !important;
+	border: 1px solid #999999 !important;
+    border-radius: 4px 4px 0px 0px !important;
+    background: linear-gradient(to bottom, #BBBBBB 0%, #999999 100%) repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    margin: 5px 0px 15px 0% !important;
+    display: table !important;
+    width: 96% !important;
+}
+
+.myLists .tabs li
+{
+	float: left !important;
+	list-style: none !important;	
+}
+
+.myLists .tabs a
+{
+	display: block !important;
+	text-decoration: none !important;
+	padding: 3px 5px !important;
+	color: brown !important;
+	border: none !important;
+	margin-bottom: -1px !important;
+	border-radius: 4px 4px 0 0 !important;	
+	margin-right: 8px !important;
+}
+
+.myLists .tabs a:not(.active):hover
+{
+	background-color:  #BBBBBB !important;
+}
+
+.myLists a.active
+{
+	/*
+	For a cleaner look, replace white in background-color and border-bottom
+	with the background color of your anonymousLists div (if different than white)
+	*/
+	border: 1px solid rgb(153,153,153) !important;	
+	background-color:  white !important;
+	border-bottom: 1px solid white !important;
+}
+
+.myLists .panelContainer
+{
+	clear: both !important;
+	overflow-y: auto !important;
+	/*height: 150px !important;*/
+	width: 98% !important;
+	margin: 0px 0px 15px 0px !important;
+}
+
+.myLists .panelContainer ul
+{
+	margin: 20px 0xp 10px 0px !important;
+	padding: 0px 0px 0px 20px !important;
+}
+
+.myLists .panelContainer li
+{
+	list-style: none !important;
+	line-height: 20px !important;
+}
+
+.myLists .panelContainer a
+{
+	color: #474747 !important; 
+	text-decoration: none !important;
+}
+
+.myLists .panelContainer a:hover
+{
+	text-decoration: underline !important;
+	color: brown !important;
+}
+
+.myLists em
+{
+	color: gray !important;
+	font-size: small !important;
+}
+
+.myLists .emptyText
+{
+	font-size: large !important;
+	color: #929292 !important;
+	margin: 0px 0px 10px 20px !important;
+}
+
+.myLists button
+{
+	color: rgb(100,100,100) !important;
+	cursor: pointer !important;
+}
+
+.myLists .clearList
+{
+	margin: 15px 0px 0px 20px !important;
+}
+
+.myLists .delItem
+{
+	/* You might need to change the path of remSprite.png */
+	background: url("../media/remSprite.png") no-repeat scroll 0px 0px rgba(0, 0, 0, 0) !important;
+	height: 18px !important;
+	width: 18px !important;
+	float: right !important;
+	clear: right !important;
+	margin-right: 10px !important;
+	cursor: pointer !important;
+	text-indent: -9999px !important;
+}
+
+.myLists .delItem:hover
+{
+	/* You might need to change the path of remSprite.png */
+	background: url("../media/remSprite.png") no-repeat scroll 0px -24px rgba(0, 0, 0, 0) !important;
+}

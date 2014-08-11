@@ -19,6 +19,11 @@
     $.fn.anonymousLists.defaultSettings = {
 		id: "anonLists",
         lists: ["History"],
+		listCaptions: [],
+		lang: "",
+		// Example of naming your tabs in more than one language:
+		//listCaptions: ["en-History|gr-Ιστορικό", "en-Favorites|gr-Αγαπημένα"],
+		//lang: "gr",
         listSizes: 20,
         preserveTab: false,
 		autoHistory: true,
@@ -48,7 +53,8 @@
 
 				var lists = $anonLists.settings.lists,
 					id = $anonLists.settings.id,
-					emptyListsHTML = [], tabsHTML = "", listsHTML = "", selTab = null;
+					emptyListsHTML = [], tabsHTML = "", listsHTML = "", 
+					selTab = null, selLang = null;
 				
 				$anonLists.settings.listSizes = 
 					fillFrom($anonLists.settings.listSizes, lists.length, "number");
@@ -72,11 +78,18 @@
 				if ($anonLists.settings.backgroundMode) {
 					return;
 				}
-
+				
 				$anonLists.addClass('cleanslate');
                 $anonLists.append("<div class='myLists'><ul class='tabs'>" + tabsHTML +
 					"</ul><div class='panelContainer'>" + listsHTML + "</div></div>");
-					
+	
+				selLang = getCookie(id + "_lang");				
+				selLang = selLang == null ? $anonLists.settings.lang : selLang;
+				
+				if (selLang != "") {
+						setCulture($anonLists, selLang);
+				}
+				
 				$anonLists.children().find(".tabs a").click(function () {
 					var $this = $(this);
 
@@ -94,7 +107,7 @@
 					$this.addClass("active").blur();
 
 					if ($anonLists.settings.preserveTab) {
-						setCookie(id + "_tab", $this.text(), 365);
+						setCookie(id + "_tab", $this.attr("href"), 365);
 					}
 
 					return false;
@@ -129,7 +142,7 @@
 				}
 
 				$anonLists.find(".tabs li" + 
-					(selTab == null ? ":first a" : " a:contains('" + selTab + "')")).click();
+					(selTab == null ? ":first a" : " a:[href='" + selTab + "']")).click();
             });
         },
 		addToHistory: function() {
@@ -149,8 +162,11 @@
 		},
 		isInList: function (list, url) {
 			return listItemIndex($(this), list, url) > -1 ? true : false;
+		},
+		setLang: function (lang) {
+			setCulture($(this), lang);
 		}
-    }
+    };
 
 	// Parameter values can be either an array, where we return it as is,
 	// or a single value, in which case we create and return an array of that value
@@ -172,12 +188,43 @@
 		}		
     }
 
+	function setCulture(el, lang)
+	{
+		var	data = el.data("anonymousLists"),
+			elId = "#" + el.attr("id"),
+			lists = data.lists,
+			listCaptions = data.listCaptions;
+
+		if (data.backgroundMode ||
+			lists.length != listCaptions.length) return;
+		
+		for (i in lists) {
+			$(elId + " a:[href='#" + data.id + "_" + lists[i] + "Panel']")
+				.html(localizedCaption(lists[i], listCaptions[i], lang));
+		}
+		
+		setCookie(data.id + "_lang", lang, 365);
+	}
+	
+	function localizedCaption(list, listCaption, lang)
+	{
+		var captions = listCaption.split("|");
+			
+		for (var i = 0; i < captions.length; i++) {
+			if (captions[i].indexOf(lang + "-") != -1) {
+				return captions[i].replace(lang + "-", "");
+			}
+		}	
+
+		return list;
+	}
+	
 	function renderTabsHtml(id, list)
 	{
 		return "<li><a href='#" + id + "_" + list.replace(" ", "") + "Panel'>" +
 			list + "</a></li>";
 	}
-	
+		
 	function renderListHtml(el, list, empty)
 	{
 		var	data = el.data("anonymousLists"),
@@ -451,7 +498,7 @@
 // Example: tabHolder("#history").anonymousLists();
 function tabsHolder(id)
 {
-	var $el = $(id);	
-	return $el.length === 0 ? $("<div id='" + id.replace("#", "") + 
+	var $el = jQuery(id);	
+	return $el.length === 0 ? jQuery("<div id='" + id.replace("#", "") + 
 		"' class='backgroundMode'></div>") : $el;
 }

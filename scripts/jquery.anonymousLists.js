@@ -87,7 +87,7 @@
 				selLang = selLang == null ? $anonLists.settings.lang : selLang;
 				
 				if (selLang != "") {
-						setCulture($anonLists, selLang);
+					setCulture($anonLists, selLang);
 				}
 				
 				$anonLists.children().find(".tabs a").click(function () {
@@ -142,7 +142,7 @@
 				}
 
 				$anonLists.find(".tabs li" + 
-					(selTab == null ? ":first a" : " a:[href='" + selTab + "']")).click();
+					(selTab == null ? ":first a" : " a[href='" + selTab + "']")).click();
             });
         },
 		addToHistory: function() {
@@ -199,7 +199,7 @@
 			lists.length != listCaptions.length) return;
 		
 		for (i in lists) {
-			$(elId + " a:[href='#" + data.id + "_" + lists[i] + "Panel']")
+			$(elId + " a[href='#" + data.id + "_" + lists[i] + "Panel']")
 				.html(localizedCaption(lists[i], listCaptions[i], lang));
 		}
 		
